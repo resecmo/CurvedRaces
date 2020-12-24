@@ -10,7 +10,7 @@ pygame.init()
 size = width, height = 640, 480
 black = (0, 0, 0)
 
-screen = pygame.display.set_mode(size)
+screen = pygame.display.set_mode(size, pygame.RESIZABLE)
 pygame.display.set_caption("CurvedRaces")
 
 
@@ -31,6 +31,9 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
+        if event.type == pygame.VIDEORESIZE:
+            width = event.w
+            height = event.h
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP] or keys[pygame.K_w]:
