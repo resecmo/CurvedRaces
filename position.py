@@ -2,7 +2,7 @@ import math as m
 
 
 class Position:
-    def __init__(self, x, y, phi=0):
+    def __init__(self, x, y, phi=0.0):
         self.x = x
         self.y = y
         self.phi = phi
@@ -24,6 +24,9 @@ class Position:
             return Position(self.x * other, self.y * other, self.phi * other)
         raise NotImplementedError
 
+    def __str__(self):
+        return f"({self.x}, {self.y}, {self.phi})"
+
     def rotate(self, psi):
-        self.x, self.y = self.x * m.cos(psi) - self.y * m.sin(psi), self.x * m.sin(psi) + self.y * m.cos(psi)
+        self.x, self.y = self.x * m.cos(psi) + self.y * m.sin(psi), -self.x * m.sin(psi) + self.y * m.cos(psi)
         self.phi += psi

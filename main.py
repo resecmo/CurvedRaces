@@ -33,7 +33,7 @@ def draw_point(surface, pos):
     radius = 8
     pygame.draw.circle(surface, (255, 255, 255), (pos.x, pos.y), radius)
     pygame.draw.line(surface, (255, 0, 0), (pos.x, pos.y),
-                     (pos.x + radius * m.sin(pos.phi), pos.y - radius * m.cos(pos.phi)))
+                     (pos.x - radius * m.sin(pos.phi), pos.y - radius * m.cos(pos.phi)))
 
 
 while True:
@@ -46,11 +46,11 @@ while True:
 
     keys = pygame.key.get_pressed()
     if keys[pygame.K_UP] or keys[pygame.K_w]:
-        speed.x += acceleration * m.sin(points[0].phi)
-        speed.y += acceleration * m.cos(points[0].phi)
-    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         speed.x -= acceleration * m.sin(points[0].phi)
         speed.y -= acceleration * m.cos(points[0].phi)
+    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
+        speed.x += acceleration * m.sin(points[0].phi)
+        speed.y += acceleration * m.cos(points[0].phi)
     if keys[pygame.K_LEFT] or keys[pygame.K_a]:
         speed.phi += 0.001
     if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
@@ -63,8 +63,8 @@ while True:
     points[0] += speed
 
     screen.fill(black)
-    print(transform(points[0], points[0]).phi)
     for p in points:
+        print(f"{p}")
         draw_point(screen, Pos(width / 2, height / 2, 0) + transform(points[0], p))
 
     sleep(0.005)
