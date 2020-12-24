@@ -11,6 +11,7 @@ size = width, height = 640, 480
 black = (0, 0, 0)
 
 screen = pygame.display.set_mode(size)
+pygame.display.set_caption("CurvedRaces")
 
 
 points = [vec2(350, 250), vec2(0, 0), vec2(200, 200), vec2(300, 300)]
@@ -31,15 +32,16 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit()
 
-    if pygame.key.get_pressed()[pygame.K_UP]:
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_UP] or keys[pygame.K_w]:
         speed[1] -= 0.1
-    if pygame.key.get_pressed()[pygame.K_DOWN]:
+    if keys[pygame.K_DOWN] or keys[pygame.K_s]:
         speed[1] += 0.1
-    if pygame.key.get_pressed()[pygame.K_LEFT]:
+    if keys[pygame.K_LEFT] or keys[pygame.K_a]:
         speed[0] -= 0.1
-    if pygame.key.get_pressed()[pygame.K_RIGHT]:
+    if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
         speed[0] += 0.1
-    if pygame.key.get_pressed()[pygame.K_SPACE]:
+    if keys[pygame.K_SPACE]:
         player_point = vec2(200, 200)
         points[0] = player_point
 
